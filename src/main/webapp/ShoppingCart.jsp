@@ -14,7 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-</head>
 <body>
 <c:import url="header.jsp"/>
 <c:set var="listP" value="${sessionScope.listP}"/>

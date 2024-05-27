@@ -22,9 +22,6 @@ public class AddProductToCartServlet extends HttpServlet {
     DAOProduct dao =new DAOProduct();
     Map<String,Integer> numberSaving= new HashMap<>();
 
-    Map<Integer,String> sizeSaving= new HashMap<>();
-
-    Map<Integer,String> colorSaving= new HashMap<>();
     int priceSum;
 
     int numberOfProduct;
