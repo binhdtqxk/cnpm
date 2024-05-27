@@ -27,6 +27,7 @@ public class adminProductList extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
+
         List<Product> productList = new ArrayList<Product>();
         try {
             productList = dao.getAllProduct();
@@ -34,8 +35,8 @@ public class adminProductList extends HttpServlet {
                 req.setAttribute("productList", productList);
                 req.getRequestDispatcher("adminProduct.jsp").forward(req, resp);
             }else {
-            System.out.println("Add product failed."); // Log để kiểm tra
-        }
+                System.out.println("Add product failed."); // Log để kiểm tra
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
