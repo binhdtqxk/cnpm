@@ -182,15 +182,6 @@ public class DAOProduct {
         }
         return rs;
     }
-    public boolean isImageFile(String fileName) {
-        String[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
-        for (String extension : imageExtensions) {
-            if (fileName.toLowerCase().endsWith(extension)) {
-                return true;
-            }
-        }
-        return false;
-    }
     public static void main(String[] args) throws SQLException {
         DAOProduct d = new DAOProduct();
         d.getProductById(1);

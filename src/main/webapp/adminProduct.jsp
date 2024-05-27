@@ -112,7 +112,7 @@
         </header>
         <form method="post" action="adminAddProduct" class="add-body" enctype="multipart/form-data">
             <label for="imgLink">Ảnh giày<span class="required">*</span></label>
-            <input  type="file" class="form-control"
+            <input  type="file" class="form-control" accept="image/*"
                     value="" name="imgLink" id="imgLink" required="">
 
             <label for="typeShoe">Loại giày<span class="required">*</span></label>
@@ -129,18 +129,14 @@
 
 
             <label for="nameShoe">Tên giày<span class="required">*</span></label>
-            <input placeholder="Nhập tên giày" type="text"
+            <input placeholder="Nhập tên giày" type="text" minlength="5" maxlength="20"
                    class="form-control" value="" name="nameShoe"
                    id="nameShoe" required="">
 
             <label for="priceShoe">Giá giày<span class="required">*</span></label>
-            <input placeholder="Nhập giá giày" type="text"
+            <input placeholder="Nhập giá giày(>100000)" type="number" min="100000" max="10000000"
                    class="form-control" value="" name="priceShoe"
                    id="priceShoe" required="">
-
-            <%--            <label for="idShoe">Mã giày<span class="required">*</span></label>--%>
-            <%--            <input placeholder="Mã giày duoc nhap tu dong" type="text"--%>
-            <%--                   class="form-control" value="" name="idShoe" id="idShoe">--%>
 
             <div class="btn">
                 <button type="submit" value="Thêm sản phẩm" class="add-button js-add-button">Thêm sản phẩm
@@ -191,11 +187,11 @@
                 </p>
             </div>
             <div class="noti-btn">
-                <a href="successConfirm">
-                    <button type="submit" value="ok" class="noti-add-button">
+<%--                <a href="successConfirm">--%>
+                    <button type="submit" id="NOADD" value="ok" class="noti-add-button">
                         OK
                     </button>
-                </a>
+<%--                </a>--%>
             </div>
         </div>
     </div>
@@ -265,6 +261,12 @@
 
     addBtn.addEventListener('click', showAddModal)
     cancelAddModal.addEventListener('click', hideAddModal)
+    document.getElementById('NOADD').addEventListener('click', function() {
+        // Gọi hàm showAddModal()
+        var notiAdd = document.querySelector('.js-noti-add');
+        notiAdd.style.display = 'none';
+        showAddModal();
+    });
 
     // xóa sản phẩm........................-----------------------------------
     const deleteBtn = document.querySelector('.js-delete')
@@ -285,8 +287,6 @@
     {
         cancelDeleteModal.addEventListener('click', hideDeleteModal)
     }
-
-
 
 </script>
 </body>

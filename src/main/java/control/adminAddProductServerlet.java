@@ -35,7 +35,6 @@ public class adminAddProductServerlet extends HttpServlet {
         String saveFilePath=getServletContext().getRealPath("/"+saveImg);
         System.out.println("s"+saveFilePath);
         String success;
-        if (dao.isImageFile(fileName)) {
             String filePath = saveFilePath + File.separator + fileName;
             System.out.println(filePath);
             part.write(filePath); // Lưu tệp hình ảnh vào thư mục đích
@@ -55,9 +54,6 @@ public class adminAddProductServerlet extends HttpServlet {
                 success="NO";
                 System.out.println("không thể lưu sp vaò csdl");
             }
-        } else {
-            success="NO";
-        }
         req.setAttribute("success", success);
         System.out.println("hình ảnh của sản phẩm không đúng");
         req.getRequestDispatcher("adminProduct.jsp").forward(req, resp);
