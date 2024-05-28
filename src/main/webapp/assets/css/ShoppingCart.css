@@ -427,7 +427,6 @@ input[type="text"][disabled], input[type="text"].disabled, input[type="search"][
     border-radius: 3px 0 0 3px;
     border: 1px solid #e5e5e5;
     border-right: 0;
-    border-color: #e5e5e5;
     color: #999;
     line-height: 20px;
     padding: 3px 9px;

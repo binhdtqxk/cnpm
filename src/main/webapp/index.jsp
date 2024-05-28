@@ -17,7 +17,7 @@
     <title>BeClassy</title>
 </head>
 <body>
-<jsp:useBean id="listP" class="dao.DAOProduct" scope="session">
+<jsp:useBean id="listPro" class="dao.DAOProduct" scope="session">
 
 </jsp:useBean>
 <c:import url="header.jsp"/>
@@ -55,7 +55,7 @@
 
                             <div class="owl-stage" style="width: 100%;">
 
-                                <c:forEach var="i" items="${listP.firstFourPr}">
+                                <c:forEach var="i" items="${listPro.firstFourPr}">
                                     <div class="owl-item active" style="width: 25%; padding-right: 10px;">
 
                                         <div class="product-card">
@@ -270,7 +270,7 @@
 
                             <div class="owl-stage" style="width: 100%;">
 
-                                <c:forEach var="i" items="${listP.firstFourOxford}">
+                                <c:forEach var="i" items="${listPro.firstFourOxford}">
                                     <div class="owl-item active" style="width: 25%; padding-right: 10px;">
 
                                         <div class="product-card">
@@ -351,7 +351,7 @@
 
                             <div class="owl-stage" style="width: 100%;">
 
-                                <c:forEach var="i" items="${listP.firstFourLoafer}">
+                                <c:forEach var="i" items="${listPro.firstFourLoafer}">
                                     <div class="owl-item active" style="width: 25%; padding-right: 10px;">
 
                                         <div class="product-card">
@@ -428,7 +428,7 @@
 
                             <div class="owl-stage" style="width: 100%;">
 
-                                <c:forEach var="i" items="${listP.firstFourDerby}">
+                                <c:forEach var="i" items="${listPro.firstFourDerby}">
                                     <div class="owl-item active" style="width: 25%; padding-right: 10px;">
 
                                         <div class="product-card">

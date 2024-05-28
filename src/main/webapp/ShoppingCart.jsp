@@ -14,7 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-</head>
 <body>
 <c:import url="header.jsp"/>
 <c:set var="listP" value="${sessionScope.listP}"/>
@@ -112,12 +111,14 @@
                                                                 </p></div>
                                                             </div>
                                                         </div>
-                                                        <button class="button btn btn-large btn-block btn-danger btn-checkout evo-button"
-                                                                title="Thanh toán ngay" type="button"
-                                                                style="background-color: black"
-                                                        >Thanh toán
-                                                            ngay
-                                                        </button>
+                                                        <a href="Payment.jsp">
+                                                            <button class="button btn btn-large btn-block btn-danger btn-checkout evo-button"
+                                                                    title="Thanh toán ngay" type="button"
+                                                                    style="background-color: black"
+                                                            >Thanh toán
+                                                                ngay
+                                                            </button>
+                                                        </a>
                                                         <button class="button btn-proceed-checkout btn btn-large btn-block btn-danger btn-checkouts"
                                                                 title="Tiếp tục mua hàng" type="button"
                                                         ><a href="index.jsp" >Tiếp
