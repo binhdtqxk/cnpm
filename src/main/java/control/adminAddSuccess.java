@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @WebServlet(value = "/successConfirm")
 public class adminAddSuccess extends HttpServlet {
-    String clearSuccess = null;
+    //    String clearSuccess = null;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
@@ -17,7 +17,7 @@ public class adminAddSuccess extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("success", clearSuccess);
-        req.getRequestDispatcher("./adminProduct.jsp").forward(req, resp);
+
+        req.getRequestDispatcher("/adminProductList").forward(req, resp);
     }
 }
