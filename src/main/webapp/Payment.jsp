@@ -68,7 +68,7 @@
                             Thông tin nhận hàng
                         </h2>
                         <c:if test="${user==null}">
-                            <a href="" class="mainInfo__Header--loginButton">
+                            <a href="login.jsp" class="mainInfo__Header--loginButton">
                                 <i class="fa-solid fa-user"></i>
                                 Đăng nhập
                             </a>
@@ -334,17 +334,27 @@
             });
         })
         //xử lý khi người dùng nhấn đặt hàng
-        $('.btn-checkout').on('click',function (){
-            var formData = {
-                listP: $('#listP').val(),
-                mapP: $('#mapP').val(),
-                numberOfProduct: $('#numberOfProduct').val(),
-                priceSum: $('#priceSum').val()
-            };
+        $('.btn-checkout').on('click',function (e){
+            e.preventDefault();
+            var email = $('#email').val();
+            var fullName = $('#fullName').val();
+            var phoneNumber = $('#phoneNumber').val();
+            var address = $('#address').val();
+            var city = $('#city').val();
+            var district = $('#district').val();
+            var commune = $('#Commune').val();
             $.ajax({
                 url: 'http://localhost:8080/Beclassy/saveOrder',
                 type: 'POST',
-                // data: formData,
+                data: {
+                    email: email,
+                    fullName: fullName,
+                    phoneNumber: phoneNumber,
+                    address: address,
+                    city: city,
+                    district: district,
+                    commune: commune,
+                },
                 success: function (response) {
                     console.log("tc");
                     Swal.fire({
@@ -357,11 +367,12 @@
                             window.location.href = 'index.jsp';
                         }
                     });
+                    //reset các sản phẩm trong giỏ hàng
                     $.ajax({
                         url: 'http://localhost:8080/Beclassy/resetSessionValues',
                         type: 'POST',
                         success: function(response) {
-                            // Giá trị của listP, mapP, priceSum, numberOfProduct đã được reset thành công
+
                         },
                         error: function (error) {
                             console.error('lỗi: ' + error);
@@ -369,6 +380,7 @@
                     });
                 },
                 error: function (error) {
+                    console.log(email+phoneNumber);
                     console.error('lỗi: ' + error);
                 }
             });

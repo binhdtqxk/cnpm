@@ -68,10 +68,7 @@ public class OrderDAO {
         return true;
     }
 
-    public boolean saveOrderNonU(List<Product> products, Map<String, Integer> productMap, int priceSum) {
-        return false;
-    }
-    public  void test(){
+    public boolean saveOrderNonU(String email, String name, int phoneNumber,String address, String city,String district, String commune,List<Product> products, Map<String, Integer> productMap, int priceSum) {
         boolean res=false;
         int id=0;
         do {
@@ -89,10 +86,46 @@ public class OrderDAO {
                 System.out.println(e);
             }
         } while (res);
-        System.out.println(id);
+        String query = "INSERT INTO ordersNonU(`id`,`email`,`name`,`phoneNumber`,`address`,`city`,`district`,`commune`,`priceSum`) values(?,?,?,?,?,?,?,?,?) ";
+        String detailOrder = "INSERT INTO orderDetail(`product_id`,`quantity`,`fullName`,`order_id`) values(?,?,?,?)";
+        int count = 0;
+        try {
+            //thêm vào bảng order trước
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+            ps.setString(2, email);
+            ps.setString(3, name);
+            ps.setInt(4,phoneNumber);
+            ps.setString(5,address);
+            ps.setString(6,city);
+            ps.setString(7,district);
+            ps.setString(8,commune);
+            ps.setInt(9,priceSum);
+
+            ps.executeUpdate();
+            try {
+                //sau đó thêm từng sản phẩm cùng với số lượng, màu và kích cỡ vào bảng chi tiết sản phẩm
+                ps = conn.prepareStatement(detailOrder);
+                for (Product pr :
+                        products) {
+                    ps.setInt(1, pr.getIdOfShoe());
+                    ps.setInt(2, productMap.get(pr.getNameOfShoe()));
+                    ps.setString(3, pr.getNameOfShoe());
+                    ps.setInt(4,id);
+                    ps.executeUpdate();
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
     }
+
     public static void main(String[] args) {
-        OrderDAO o= new OrderDAO();
-        o.test();
+
     }
 }
