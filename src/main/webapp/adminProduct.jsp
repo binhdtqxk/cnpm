@@ -88,7 +88,7 @@
                     <tbody>
                     <c:forEach var="o" items="${requestScope.productList}">
                         <tr>
-                            <td>${o.getImgOfShoe()}</td>
+                            <td><img src="${o.getImgOfShoe()}" style="width: 50px;"></td>
                             <td>${o.getTypeOfShoe()}</td>
                             <td>${o.getNameOfShoe()}</td>
                             <td>${o.getPriceOfShoe()}</td>
@@ -110,29 +110,33 @@
         <header class="add-header">
             Thêm sản phẩm
         </header>
-        <form method="post" action="adminAddProduct" class="add-body">
+        <form method="post" action="adminAddProduct" class="add-body" enctype="multipart/form-data">
             <label for="imgLink">Ảnh giày<span class="required">*</span></label>
-            <input placeholder="Link ảnh" type="text" class="form-control"
-                   value="" name="imgLink" id="imgLink" required="">
+            <input  type="file" class="form-control" accept="image/*"
+                    value="" name="imgLink" id="imgLink" required="">
 
             <label for="typeShoe">Loại giày<span class="required">*</span></label>
-            <input placeholder="Nhập loại giày" type="text" class="form-control"
-                   value="" name="typeShoe" id="typeShoe" required="">
+            <select name="typeShoe" class="form-control" id="typeShoe" style="width: 150px">
+                <option value="LOAFER">LOAFER</option>
+                <option value="OXFORD">OXFORD</option>
+                <option value="DERBY">DERBY</option>
+                <option value="BOOTS">BOOTS</option>
+                <option value="SNEAKER">SNEAKER</option>
+                <option value="SANDAL">SANDAL</option>
+            </select>
+            <%--            <input placeholder="Nhập loại giày" type="text" class="form-control"--%>
+            <%--                   value="" name="typeShoe" id="typeShoe" required="">--%>
 
 
             <label for="nameShoe">Tên giày<span class="required">*</span></label>
-            <input placeholder="Nhập tên giày" type="text"
+            <input placeholder="Nhập tên giày" type="text" minlength="5" maxlength="20"
                    class="form-control" value="" name="nameShoe"
                    id="nameShoe" required="">
 
             <label for="priceShoe">Giá giày<span class="required">*</span></label>
-            <input placeholder="Nhập giá giày" type="text"
+            <input placeholder="Nhập giá giày(>100000)" type="number" min="100000" max="10000000"
                    class="form-control" value="" name="priceShoe"
                    id="priceShoe" required="">
-
-<%--            <label for="idShoe">Mã giày<span class="required">*</span></label>--%>
-<%--            <input placeholder="Mã giày duoc nhap tu dong" type="text"--%>
-<%--                   class="form-control" value="" name="idShoe" id="idShoe">--%>
 
             <div class="btn">
                 <button type="submit" value="Thêm sản phẩm" class="add-button js-add-button">Thêm sản phẩm
@@ -143,7 +147,7 @@
 </div>
 
 <c:set var="success" value="${requestScope.success}"/>
-<c:if test="${success != null}">
+<c:if test="${success =='OK'}">
     <div class="noti-add js-noti-add">
         <div class="noti-add-container">
             <a href="successConfirm" class="noti-add-close js-noti-add-close">
@@ -167,7 +171,31 @@
         </div>
     </div>
 </c:if>
-
+<%--nếu lỗi--%>
+<c:if test="${success =='NO'}">
+    <div class="noti-add js-noti-add">
+        <div class="noti-add-container">
+            <a href="successConfirm" class="noti-add-close js-noti-add-close">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <header class="noti-add-header">
+                Thông báo
+            </header>
+            <div class="noti-body">
+                <p>
+                    Tệp tải lên không phải là hình ảnh!
+                </p>
+            </div>
+            <div class="noti-btn">
+<%--                <a href="successConfirm">--%>
+                    <button type="submit" id="NOADD" value="ok" class="noti-add-button">
+                        OK
+                    </button>
+<%--                </a>--%>
+            </div>
+        </div>
+    </div>
+</c:if>
 <div class="delete-modal  js-delete-modal">
     <div class="delete-container">
         <div class="delete-close js-delete-close js-delete-button-cancel">
@@ -233,6 +261,12 @@
 
     addBtn.addEventListener('click', showAddModal)
     cancelAddModal.addEventListener('click', hideAddModal)
+    document.getElementById('NOADD').addEventListener('click', function() {
+        // Gọi hàm showAddModal()
+        var notiAdd = document.querySelector('.js-noti-add');
+        notiAdd.style.display = 'none';
+        showAddModal();
+    });
 
     // xóa sản phẩm........................-----------------------------------
     const deleteBtn = document.querySelector('.js-delete')
@@ -253,8 +287,6 @@
     {
         cancelDeleteModal.addEventListener('click', hideDeleteModal)
     }
-
-
 
 </script>
 </body>

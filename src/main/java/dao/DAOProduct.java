@@ -182,7 +182,6 @@ public class DAOProduct {
         }
         return rs;
     }
-
     public static void main(String[] args) throws SQLException {
         DAOProduct d = new DAOProduct();
         d.getProductById(1);
